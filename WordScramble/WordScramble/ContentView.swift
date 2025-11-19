@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var errorTitle = ""
     @State private var errorMessage = ""
     @State private var showingError = false
+    
+    @State private var score = 0
     var body: some View {
         NavigationStack {
             List {
@@ -35,6 +37,12 @@ struct ContentView: View {
                 }
             }
             .navigationTitle(rootWord)
+            .toolbar {
+                Text("\(score)")
+                Button("Change Word") {
+                    startGame()
+                }
+            }
                 .onSubmit(addNewWord)
                 .onAppear(perform: startGame)
                 .alert(errorTitle, isPresented: $showingError) { } message: {
@@ -46,7 +54,13 @@ struct ContentView: View {
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard answer.count > 0 else {
+        guard answer.count > 2 else {
+            wordError(title: "Word too short", message: "Answers shorter than three letters not allowed")
+            return
+        }
+        
+        guard answer != rootWord else {
+            wordError(title: "Word just like start word", message: "Start word not allowed")
             return
         }
         
@@ -67,6 +81,7 @@ struct ContentView: View {
         
         withAnimation {
             usedWords.insert(answer, at: 0)
+            score += answer.count
         }
         
         newWord = ""
