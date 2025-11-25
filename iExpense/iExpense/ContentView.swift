@@ -7,25 +7,68 @@
 
 import SwiftUI
 
-struct SecondView: View {
-    @Environment(\.dismiss) var dismiss
+struct ExpenseItem: Identifiable, Codable {
+    var id = UUID()
     let name: String
+    let type: String
+    let amount: Double
+}
 
-    var body: some View {
-        Text("Hello, \(name)!")
-        Button("Dismiss") {
-            dismiss()
+@Observable
+class Expenses {
+    var items = [ExpenseItem]() {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "items")
+            }
         }
     }
+    
+    init() {
+        if let decoded = UserDefaults.standard.data(forKey: "items") {
+            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from:decoded) {
+                items = decodedItems
+                return
+            }
+        }
+        
+        items = []
+    }
+    
 }
 
 struct ContentView: View {
-    @AppStorage("tapCount")  private var tapCount = 0
-
+    @State private var expenses = Expenses()
+    @State private var showingAddExpense = false
+    
     var body: some View {
-        Button("Tap count: \(tapCount)") {
-            tapCount += 1
+        NavigationStack {
+            List {
+                ForEach(expenses.items) { item in
+                    HStack {
+                        VStack(alignment: .leading){
+                            Text(item.name).font(.headline)
+                            Text(item.type).font(.subheadline).foregroundStyle(.gray)
+                        }
+                        Spacer()
+                        Text(item.amount, format: .currency(code: "USD")).font(.headline).bold()
+                    }
+                    
+                }.onDelete(perform: removeItems)
+            }.navigationTitle("IExpense")
+                .toolbar {
+                    Button("Add Expense", systemImage: "plus") {
+                        showingAddExpense = true
+                    }
+                }
+        }.sheet(isPresented: $showingAddExpense) {
+            AddView(expenses: expenses)
         }
+    }
+    
+    
+    func removeItems(at offsets: IndexSet) {
+        expenses.items.remove(atOffsets: offsets)
     }
 }
 
