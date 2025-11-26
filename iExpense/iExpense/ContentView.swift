@@ -38,23 +38,29 @@ class Expenses {
 }
 
 struct ContentView: View {
-    @State private var expenses = Expenses()
     @State private var showingAddExpense = false
+    
+    @State private var expenses = Expenses()
+
+    var personalItems: [ExpenseItem] {
+        expenses.items.filter { $0.type == "Personal" }
+    }
+
+    var businessItems: [ExpenseItem] {
+        expenses.items.filter { $0.type == "Business" }
+    }
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading){
-                            Text(item.name).font(.headline)
-                            Text(item.type).font(.subheadline).foregroundStyle(.gray)
-                        }
-                        Spacer()
-                        Text(item.amount, format: .currency(code: "USD")).font(.headline).bold()
-                    }
-                    
-                }.onDelete(perform: removeItems)
+                ExpenseListSection(title: "Personal", items: personalItems, deleteAction: { offsets in
+                    removeItems(at: offsets, from: personalItems)
+                })
+                
+                ExpenseListSection(title: "Business", items: businessItems, deleteAction: { offsets in
+                    removeItems(at: offsets, from: businessItems)})
+                
+               
             }.navigationTitle("IExpense")
                 .toolbar {
                     Button("Add Expense", systemImage: "plus") {
@@ -66,9 +72,13 @@ struct ContentView: View {
         }
     }
     
-    
-    func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+
+    func removeItems(at offsets: IndexSet, from filteredItems: [ExpenseItem]) {
+        let itemsToDelete = offsets.map {
+            filteredItems[$0].id
+        }
+        
+        expenses.items.removeAll {item in itemsToDelete.contains(item.id)}
     }
 }
 
