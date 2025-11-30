@@ -14,9 +14,7 @@ struct ListLayout: View {
     var body: some View {
         List(missions) {
              mission in
-                NavigationLink {
-                    MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     HStack {
                         ZStack {
                             Color(.lightBackground)

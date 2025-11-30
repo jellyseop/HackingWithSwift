@@ -41,13 +41,17 @@ struct ContentView: View {
     @State private var showingAddExpense = false
     
     @State private var expenses = Expenses()
-
+    
     var personalItems: [ExpenseItem] {
         expenses.items.filter { $0.type == "Personal" }
     }
-
+    
     var businessItems: [ExpenseItem] {
         expenses.items.filter { $0.type == "Business" }
+    }
+    
+    enum NavigationRoute: Hashable {
+        case addExpense
     }
     
     var body: some View {
@@ -60,19 +64,26 @@ struct ContentView: View {
                 ExpenseListSection(title: "Business", items: businessItems, deleteAction: { offsets in
                     removeItems(at: offsets, from: businessItems)})
                 
-               
+                
             }.navigationTitle("IExpense")
+                .navigationDestination(for: NavigationRoute.self) { route in
+                    switch route {
+                    case .addExpense:
+                        AddView(expenses: expenses)
+                    }
+                    
+                }
                 .toolbar {
-                    Button("Add Expense", systemImage: "plus") {
-                        showingAddExpense = true
+                    ToolbarItem(placement: .primaryAction) {
+                        NavigationLink(value: NavigationRoute.addExpense) {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
-        }.sheet(isPresented: $showingAddExpense) {
-            AddView(expenses: expenses)
         }
     }
     
-
+    
     func removeItems(at offsets: IndexSet, from filteredItems: [ExpenseItem]) {
         let itemsToDelete = offsets.map {
             filteredItems[$0].id

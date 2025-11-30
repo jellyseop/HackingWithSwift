@@ -27,11 +27,16 @@ struct ContentView: View {
                 }
             }.navigationTitle("Moonshot")
                 .navigationBarTitleDisplayMode(.automatic)
+                .navigationDestination(for: Mission.self) { mission in
+                    MissionView(mission: mission, astronauts: astronauts)
+                }
+                .navigationDestination(for: Astronaut.self) { astronaut in
+                    AstronautView(astronaut: astronaut)
+                }
                 .background(.darkBackground)
                 .preferredColorScheme(.dark)
                 .toolbar {
                     Button(showList ? "Grid" : "List") {
-                        
                             showList.toggle()
                         
                     }
