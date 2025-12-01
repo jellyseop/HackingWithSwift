@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		A1923DC22EDC7762004DAECC /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B0C5A62EDDDFC400BC0463 /* iHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A1923DC42EDC7762004DAECC /* Test */ = {
+		A1B0C5A82EDDDFC400BC0463 /* iHabit */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Test;
+			path = iHabit;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A1923DBF2EDC7762004DAECC /* Frameworks */ = {
+		A1B0C5A32EDDDFC400BC0463 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A1923DB92EDC7762004DAECC = {
+		A1B0C59D2EDDDFC400BC0463 = {
 			isa = PBXGroup;
 			children = (
-				A1923DC42EDC7762004DAECC /* Test */,
-				A1923DC32EDC7762004DAECC /* Products */,
+				A1B0C5A82EDDDFC400BC0463 /* iHabit */,
+				A1B0C5A72EDDDFC400BC0463 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A1923DC32EDC7762004DAECC /* Products */ = {
+		A1B0C5A72EDDDFC400BC0463 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1923DC22EDC7762004DAECC /* Test.app */,
+				A1B0C5A62EDDDFC400BC0463 /* iHabit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1923DC12EDC7762004DAECC /* Test */ = {
+		A1B0C5A52EDDDFC400BC0463 /* iHabit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1923DCD2EDC7763004DAECC /* Build configuration list for PBXNativeTarget "Test" */;
+			buildConfigurationList = A1B0C5B12EDDDFC500BC0463 /* Build configuration list for PBXNativeTarget "iHabit" */;
 			buildPhases = (
-				A1923DBE2EDC7762004DAECC /* Sources */,
-				A1923DBF2EDC7762004DAECC /* Frameworks */,
-				A1923DC02EDC7762004DAECC /* Resources */,
+				A1B0C5A22EDDDFC400BC0463 /* Sources */,
+				A1B0C5A32EDDDFC400BC0463 /* Frameworks */,
+				A1B0C5A42EDDDFC400BC0463 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				A1923DC42EDC7762004DAECC /* Test */,
+				A1B0C5A82EDDDFC400BC0463 /* iHabit */,
 			);
-			name = Test;
+			name = iHabit;
 			packageProductDependencies = (
 			);
-			productName = Test;
-			productReference = A1923DC22EDC7762004DAECC /* Test.app */;
+			productName = iHabit;
+			productReference = A1B0C5A62EDDDFC400BC0463 /* iHabit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A1923DBA2EDC7762004DAECC /* Project object */ = {
+		A1B0C59E2EDDDFC400BC0463 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					A1923DC12EDC7762004DAECC = {
+					A1B0C5A52EDDDFC400BC0463 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
 				};
 			};
-			buildConfigurationList = A1923DBD2EDC7762004DAECC /* Build configuration list for PBXProject "Test" */;
+			buildConfigurationList = A1B0C5A12EDDDFC400BC0463 /* Build configuration list for PBXProject "iHabit" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = A1923DB92EDC7762004DAECC;
+			mainGroup = A1B0C59D2EDDDFC400BC0463;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = A1923DC32EDC7762004DAECC /* Products */;
+			productRefGroup = A1B0C5A72EDDDFC400BC0463 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1923DC12EDC7762004DAECC /* Test */,
+				A1B0C5A52EDDDFC400BC0463 /* iHabit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A1923DC02EDC7762004DAECC /* Resources */ = {
+		A1B0C5A42EDDDFC400BC0463 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A1923DBE2EDC7762004DAECC /* Sources */ = {
+		A1B0C5A22EDDDFC400BC0463 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A1923DCB2EDC7763004DAECC /* Debug */ = {
+		A1B0C5AF2EDDDFC500BC0463 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		A1923DCC2EDC7763004DAECC /* Release */ = {
+		A1B0C5B02EDDDFC500BC0463 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +246,7 @@
 			};
 			name = Release;
 		};
-		A1923DCE2EDC7763004DAECC /* Debug */ = {
+		A1B0C5B22EDDDFC500BC0463 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -261,13 +261,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.Lee.Jelly.Test;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Lee.Jelly.iHabit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -279,7 +278,7 @@
 			};
 			name = Debug;
 		};
-		A1923DCF2EDC7763004DAECC /* Release */ = {
+		A1B0C5B32EDDDFC500BC0463 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -294,13 +293,12 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.Lee.Jelly.Test;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Lee.Jelly.iHabit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -315,25 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1923DBD2EDC7762004DAECC /* Build configuration list for PBXProject "Test" */ = {
+		A1B0C5A12EDDDFC400BC0463 /* Build configuration list for PBXProject "iHabit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A1923DCB2EDC7763004DAECC /* Debug */,
-				A1923DCC2EDC7763004DAECC /* Release */,
+				A1B0C5AF2EDDDFC500BC0463 /* Debug */,
+				A1B0C5B02EDDDFC500BC0463 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1923DCD2EDC7763004DAECC /* Build configuration list for PBXNativeTarget "Test" */ = {
+		A1B0C5B12EDDDFC500BC0463 /* Build configuration list for PBXNativeTarget "iHabit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A1923DCE2EDC7763004DAECC /* Debug */,
-				A1923DCF2EDC7763004DAECC /* Release */,
+				A1B0C5B22EDDDFC500BC0463 /* Debug */,
+				A1B0C5B32EDDDFC500BC0463 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A1923DBA2EDC7762004DAECC /* Project object */;
+	rootObject = A1B0C59E2EDDDFC400BC0463 /* Project object */;
 }

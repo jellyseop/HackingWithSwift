@@ -1,14 +1,14 @@
 //
-//  TestApp.swift
-//  Test
+//  iHabitApp.swift
+//  iHabit
 //
-//  Created by junseopLee on 11/30/25.
+//  Created by junseopLee on 12/1/25.
 //
 
 import SwiftUI
 
 @main
-struct TestApp: App {
+struct iHabitApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
