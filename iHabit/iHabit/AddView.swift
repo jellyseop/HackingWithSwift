@@ -15,21 +15,36 @@ struct AddView: View {
     @State private var title = ""
     @State private var description = ""
     var body: some View {
-        Form {
-            TextField("Enter habit", text: $title)
-            TextField("Enter description", text: $description)
-        }.navigationTitle("Add New")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("save") {
-                        let habitItem = HabitItem(title: title, description: description, count: 0)
-                        habit.items.append(habitItem)
-                        dismiss()
+        NavigationStack {
+            Form {
+                TextField("Enter habit", text: $title)
+                TextField("Enter description", text: $description)
+            }.navigationTitle("Add New")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("cancel") {
+                            dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("save") {
+                            if title.isEmpty {
+                                return
+                            }
+                            
+                            let habitItem = HabitItem(id: UUID(), title: title, description: description, count: 0)
+                            habit.items.append(habitItem)
+                            dismiss()
+                        }
                     }
                 }
-            }
-        
+        }
     }
 }
 
+#Preview {
+    let habit = Habit()
+    AddView(habit: habit)
+}
 

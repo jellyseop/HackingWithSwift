@@ -18,27 +18,29 @@ struct AddView: View {
     
     let types = ["Business", "Personal"]
     var body: some View {
-        Form {
-            Picker("Type", selection: $type) {
-                ForEach(types, id: \.self) {
-                    Text($0)
-                }
-            }
-            
-            TextField("Amount", value: $amount, format: .currency(code: "USD")).keyboardType(.decimalPad)
-        }.navigationTitle($name)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        let finalName = name.isEmpty ? "Unknown" : name
-                        let expense = ExpenseItem(name: finalName, type: type, amount: amount)
-                        expenses.items.append(expense)
-                        
-                        dismiss()
+        NavigationStack {
+            Form {
+                Picker("Type", selection: $type) {
+                    ForEach(types, id: \.self) {
+                        Text($0)
                     }
                 }
-            }
+                
+                TextField("Amount", value: $amount, format: .currency(code: "USD")).keyboardType(.decimalPad)
+            }.navigationTitle($name)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            let finalName = name.isEmpty ? "Unknown" : name
+                            let expense = ExpenseItem(name: finalName, type: type, amount: amount)
+                            expenses.items.append(expense)
+                            
+                            dismiss()
+                        }
+                    }
+                }
+        }
     }
 }
 
