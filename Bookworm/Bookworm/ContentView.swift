@@ -26,10 +26,12 @@ struct ContentView: View {
                                     .foregroundStyle(.secondary)
                             }
                             Spacer()
-                            EmojiRatingView(rating: book.rating)
+                            RatingView(rating: .constant(book.rating))
                         }
                     }
-                }
+                }.onDelete(perform: deleteBooks)
+            }.navigationDestination(for: Book.self) { book in
+                DetailView(book: book)
             }.navigationTitle("Bookworm")
                .toolbar {
                    ToolbarItem(placement: .topBarTrailing) {
@@ -37,11 +39,24 @@ struct ContentView: View {
                            showingAddScreen.toggle()
                        }
                    }
+                   ToolbarItem(placement: .topBarLeading) {
+                       EditButton()
+                   }
                }
                .sheet(isPresented: $showingAddScreen) {
                    AddBookView()
                }
        }
+    }
+    
+    func deleteBooks(at offsets: IndexSet) {
+        for offset in offsets {
+            // find this book in our query
+            let book = books[offset]
+
+            // delete it from the context
+            modelContext.delete(book)
+        }
     }
 }
 
