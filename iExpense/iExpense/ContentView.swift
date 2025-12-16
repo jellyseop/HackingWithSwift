@@ -4,94 +4,68 @@
 //
 //  Created by junseopLee on 11/24/25.
 //
-
+import SwiftData
 import SwiftUI
-
-struct ExpenseItem: Identifiable, Codable {
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
-}
-
-@Observable
-class Expenses {
-    var items = [ExpenseItem]() {
-        didSet {
-            if let encoded = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "items")
-            }
-        }
-    }
-    
-    init() {
-        if let decoded = UserDefaults.standard.data(forKey: "items") {
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from:decoded) {
-                items = decodedItems
-                return
-            }
-        }
-        
-        items = []
-    }
-    
-}
 
 struct ContentView: View {
     @State private var showingAddExpense = false
     
-    @State private var expenses = Expenses()
+    @Environment(\.modelContext) var modelContext
     
-    var personalItems: [ExpenseItem] {
-        expenses.items.filter { $0.type == "Personal" }
-    }
-    
-    var businessItems: [ExpenseItem] {
-        expenses.items.filter { $0.type == "Business" }
-    }
-    
-    enum NavigationRoute: Hashable {
-        case addExpense
-    }
+    @State private var filter = ExpenseType.business
+    @State private var sortOrder = [
+        SortDescriptor(\Expense.name),
+        SortDescriptor(\Expense.amount)
+    ]
     
     var body: some View {
         NavigationStack {
-            List {
-                ExpenseListSection(title: "Personal", items: personalItems, deleteAction: { offsets in
-                    removeItems(at: offsets, from: personalItems)
-                })
-                
-                ExpenseListSection(title: "Business", items: businessItems, deleteAction: { offsets in
-                    removeItems(at: offsets, from: businessItems)})
-                
-                
-            }.navigationTitle("IExpense")
-                .navigationDestination(for: NavigationRoute.self) { route in
-                    switch route {
-                    case .addExpense:
-                        AddView(expenses: expenses)
-                    }
-                    
+            ExpensesView(for: filter, sortOrder: sortOrder)
+                .navigationTitle("IExpense")
+                .navigationDestination(for: Expense.self) { expense in
+                    EditView(expense: expense)
                 }
                 .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        NavigationLink(value: NavigationRoute.addExpense) {
-                            Image(systemName: "plus")
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Add Samples", systemImage: "plus") {
+                            showingAddExpense.toggle()
+                            //try? modelContext.delete(model: Expense.self)
                         }
                     }
+                    ToolbarItem(placement: .topBarLeading) {
+                        HStack {
+                            Menu(filter.rawValue) {
+                                Picker("Filter", selection: $filter) {
+                                    ForEach(ExpenseType.allCases, id: \.self) { type in
+                                        Text(type.rawValue)
+                                    }
+                                }
+                            }
+                            Menu("Sort", systemImage: "slider.horizontal.3") {
+                                Picker("Sort", selection: $sortOrder) {
+                                    Text("Sort By Name")
+                                        .tag([
+                                            SortDescriptor(\Expense.name),
+                                            SortDescriptor(\Expense.amount)
+                                        ])
+                                    Text("Sort By Amount")
+                                        .tag([
+                                            SortDescriptor(\Expense.amount),
+                                            SortDescriptor(\Expense.name)
+                                        ])
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                .sheet(isPresented: $showingAddExpense) {
+                    AddView()
                 }
         }
     }
-    
-    
-    func removeItems(at offsets: IndexSet, from filteredItems: [ExpenseItem]) {
-        let itemsToDelete = offsets.map {
-            filteredItems[$0].id
-        }
-        
-        expenses.items.removeAll {item in itemsToDelete.contains(item.id)}
-    }
 }
+
 
 #Preview {
     ContentView()

@@ -4,46 +4,45 @@
 //
 //  Created by junseopLee on 11/25/25.
 //
-
+import SwiftData
 import SwiftUI
 
 struct AddView: View {
     @Environment(\.dismiss) var dismiss
-    
-    var expenses: Expenses
+    @Environment(\.modelContext) var modelContext
     
     @State private var name = "New Expense"
-    @State private var type = "Personal"
+    @State private var type = ExpenseType.business
     @State private var amount = 0.0
     
-    let types = ["Business", "Personal"]
     var body: some View {
-        NavigationStack {
-            Form {
-                Picker("Type", selection: $type) {
-                    ForEach(types, id: \.self) {
-                        Text($0)
-                    }
+        Form {
+            TextField("Name", text: $name)
+            
+            Picker("Type", selection: $type) {
+                ForEach(ExpenseType.allCases, id: \.self) { type in
+                    Text(type.rawValue)
                 }
-                
-                TextField("Amount", value: $amount, format: .currency(code: "USD")).keyboardType(.decimalPad)
-            }.navigationTitle($name)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save") {
-                            let finalName = name.isEmpty ? "Unknown" : name
-                            let expense = ExpenseItem(name: finalName, type: type, amount: amount)
-                            expenses.items.append(expense)
-                            
-                            dismiss()
-                        }
-                    }
+            }
+            
+            TextField("Amount", value: $amount, format: .currency(code: "USD")).keyboardType(.decimalPad)
+            
+            Section {
+                Button(role: .confirm) {
+                    let finalName = name.isEmpty ? "Unknown" : name
+                    let expense = Expense(name: finalName, type: type, amount: amount)
+                    
+                    modelContext.insert(expense)
+                    dismiss()
+                } label: {
+                     Text("Save")
+                        .frame(maxWidth: .infinity, alignment: .center)
                 }
+            }
         }
     }
 }
 
 #Preview {
-    AddView(expenses: Expenses())
+    AddView()
 }
