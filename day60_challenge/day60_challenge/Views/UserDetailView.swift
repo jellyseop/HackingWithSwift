@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserDetail: View {
+struct UserDetailView: View {
     let user: User
     
     var body: some View {
@@ -86,7 +86,7 @@ struct UserDetail: View {
     
     // 2. 뷰 리턴
     return NavigationStack {
-        UserDetail(user: user)
+        UserDetailView(user: user)
     }
 }
 
